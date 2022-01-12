@@ -17,6 +17,10 @@ public class Chassis extends SubsystemBase{
     left = new GroupOfMotors(Constants.LEFT_FRONT_PORT, Constants.LEFT_BACK_PORT);
     right = new GroupOfMotors(Constants.RIGHT_FRONT_PORT, Constants.RIGHT_BACK_PORT);
   }
+  public void setPower(double p){
+    left.setPower(p);
+    right.setPower(p);
+  }
 
   @Override
   public void periodic() {
