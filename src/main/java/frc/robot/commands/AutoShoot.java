@@ -30,16 +30,17 @@ public class AutoShoot extends CommandBase {
     distance = temp.x;
     angle = temp.y + chassis.getAngle();
 
-    command = new Turn(angle).alongWith(new Shoot(shooting, this::getAngleDiff, calculateVelocity()));
+    command = new Turn(chassis, angle).alongWith(new Shoot(shooting, this::getAngleDiff, calculateVelocity(distance)));
   }
 
   /**
    * calculates the velocity needed to shoot to the target
+   * @param distance the distance to the tower, in meters
    * @return the wanted velocity in meter/sec if out of range, returns Double.NaN
    */
-  private double calculateVelocity(){
+  private double calculateVelocity(double distance){
     if (distance < Constants.MIN_SHOOTING_DISTANCE){
-      end(false);
+      cancel();
       return Double.NaN;
     }
 
@@ -52,7 +53,8 @@ public class AutoShoot extends CommandBase {
       }
     }
 
-    end(false);
+    //means that the distance is above the maximum
+    cancel();
     return Double.NaN;
   }
 

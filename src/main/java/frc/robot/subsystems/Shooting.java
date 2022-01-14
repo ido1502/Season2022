@@ -12,7 +12,6 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.ShootingCalibration;
 import frc.robot.utils.FeedForward;
 import frc.robot.vision.Processor;
 
