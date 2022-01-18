@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Subsystems.Elivator_Inside;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -16,8 +18,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  private XboxController controller;
+  private JoystickButton rightTrigerForShackle;
+  private Elivator_Inside elivator_Inside;
+  private OpenShackle openShackle;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    elivator_Inside = new Elivator_Inside();
+    controller = new XboxController(Constants.xboxControllerPort);
+    rightTrigerForShackle = new JoystickButton(controller, Constants.rightTrigerForShackle);
+    openShackle = new OpenShackle(elivator_Inside);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -28,7 +38,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    rightTrigerForShackle.whileHeld(openShackle);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
