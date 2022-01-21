@@ -2,9 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.Subsystems;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -13,13 +11,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Elivator_Inside extends SubsystemBase {
+public class ElivatorInside extends SubsystemBase {
   /** Creates a new Elivator_Inside. */
 
-  private WPI_TalonFX telescopicMotor;
-  private WPI_TalonSRX shackleOpenner;
+  private final WPI_TalonFX telescopicMotor;
+  private final WPI_TalonSRX shackleOpenner;
 
-  public Elivator_Inside() {
+  public ElivatorInside() {
     this.telescopicMotor = new WPI_TalonFX(Constants.telescopicMotor);
     this.shackleOpenner = new WPI_TalonSRX(Constants.shackleOpenner);
   }

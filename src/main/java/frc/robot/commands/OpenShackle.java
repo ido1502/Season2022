@@ -2,18 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Subsystems.Elivator_Inside;
+import frc.robot.Constants;
+import frc.robot.subsystems.ElivatorInside;
 
 public class OpenShackle extends CommandBase {
   /** Creates a new OpenShackle. */
   
-  Elivator_Inside elivator;
-  public OpenShackle(Elivator_Inside elivator) {
+  private final ElivatorInside elivator;
+
+  public OpenShackle(ElivatorInside elivator) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.elivator = elivator;
     addRequirements(elivator);
