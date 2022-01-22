@@ -18,10 +18,9 @@ public class ElivatorInside extends SubsystemBase {
   private final WPI_TalonSRX shackleOpenner;
 
   public ElivatorInside() {
-    this.telescopicMotor = new WPI_TalonFX(Constants.telescopicMotor);
-    this.shackleOpenner = new WPI_TalonSRX(Constants.shackleOpenner);
+    this.telescopicMotor = new WPI_TalonFX(Constants.TELESCOPIC_MOTOR);
+    this.shackleOpenner = new WPI_TalonSRX(Constants.SHACKLE_OPENNER);
   }
-
 
   /**
    * sets the power of telescopic motor 

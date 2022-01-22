@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.MoveElivator;
 import frc.robot.commands.OpenShackle;
 import frc.robot.subsystems.ElivatorInside;
 
@@ -19,16 +20,29 @@ import frc.robot.subsystems.ElivatorInside;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private final XboxController controller;
-  private final JoystickButton rightTrigerForShackle;
   private final ElivatorInside elivator_Inside;
+
+  private final XboxController controller;
+
+  private final JoystickButton trigerForShackle;
+  private final JoystickButton pov;
+  
   private final OpenShackle openShackle;
+  private final MoveElivator moveElivator;
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
     elivator_Inside = new ElivatorInside();
-    controller = new XboxController(Constants.xboxControllerPort);
-    rightTrigerForShackle = new JoystickButton(controller, Constants.rightTrigerForShackle);
+    
+    controller = new XboxController(Constants.XBOX_CONTROLLER_PORT);
+    
+    trigerForShackle = new JoystickButton(controller, Constants.TRIGER_FOR_SHACKLE);
+    pov = new JoystickButton(controller, Constants.XBOX_CONTROLLER_POV);
+    
     openShackle = new OpenShackle(elivator_Inside);
+    moveElivator = new MoveElivator(elivator_Inside, controller);
+    
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -40,7 +54,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    rightTrigerForShackle.whileHeld(openShackle);
+    trigerForShackle.whileHeld(openShackle);
+    pov.whileHeld(moveElivator);
   }
 
   /**

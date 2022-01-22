@@ -6,18 +6,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Constants;
 import frc.robot.subsystems.ElivatorInside;
 
-public class OpenShackle extends CommandBase {
-  /** Creates a new OpenShackle. */
-  
+public class MoveElivator extends CommandBase {
+  /** Creates a new MoveElivator. */
   private final ElivatorInside elivator;
+  private final XboxController controller;
+  private double angle, power;
 
-  public OpenShackle(ElivatorInside elivator) {
+  public MoveElivator(ElivatorInside eInside, XboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.elivator = elivator;
+    this.elivator = eInside;
+    this.controller = controller;
     addRequirements(elivator);
   }
 
@@ -28,13 +28,20 @@ public class OpenShackle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    elivator.SetPowerShackleOpenner(Constants.SHACKLE_OPENNING_MAX_POWER);
+    angle = controller.getPOV();
+
+    if(angle > 270 && angle < 90)
+      power = 0.5;
+    else power = -0.5;
+
+    elivator.SetPowerTelescopicMotor(power);
+        
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elivator.SetPowerShackleOpenner(0);
+    elivator.SetPowerTelescopicMotor(0);
   }
 
   // Returns true when the command should end.
