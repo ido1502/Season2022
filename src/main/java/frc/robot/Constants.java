@@ -23,7 +23,7 @@ public final class Constants {
     //controller
     public static final int TRIGER_FOR_SHACKLE = -1;
     public static final int XBOX_CONTROLLER_PORT = 0;
-    public static final int XBOX_CONTROLLER_POV = -1;
+    public static final double JOYSTICK_DEADBAND = -1;
 
     //elivator
     public static final int PULSES_PER_METER = -1;

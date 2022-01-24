@@ -6,13 +6,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.ElivatorInside;
 
 public class MoveElivator extends CommandBase {
   /** Creates a new MoveElivator. */
   private final ElivatorInside elivator;
   private final XboxController controller;
-  private double angle, power;
 
   public MoveElivator(ElivatorInside eInside, XboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,14 +28,18 @@ public class MoveElivator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    angle = controller.getPOV();
+    double power = deadband(-controller.getRightY());
 
-    if(angle > 270 && angle < 90)
-      power = 0.5;
-    else power = -0.5;
+    elivator.SetPowerTelescopicMotor(power);    
+  }
 
-    elivator.SetPowerTelescopicMotor(power);
-        
+  /**
+   * deadbands the value of the controller
+   * @param value between (-1 and 1)
+   * @return 0 if under the minimum, the value otherwise
+   */
+  private double deadband(double value){
+    return (Math.abs(value) < Constants.JOYSTICK_DEADBAND ? 0 : value);
   }
 
   // Called once the command ends or is interrupted.
