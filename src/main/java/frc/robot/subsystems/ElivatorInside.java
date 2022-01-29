@@ -38,6 +38,22 @@ public class ElivatorInside extends SubsystemBase {
   public void SetPowerShackleOpenner(double power){ 
     this.shackleOpenner.set(ControlMode.PercentOutput, power);
   }
+
+/**
+ * 
+ * @return the current pulses from the encoder 
+ */
+  public double getSelectedSensorPosition(){
+    return telescopicMotor.getSelectedSensorPosition();
+  }
+  /**
+   * transfers the total pulses of the encoder to meter
+   * @return
+   */
+  public double getSelectedSensorPositionInMeters(){
+      return getSelectedSensorPosition() / Constants.PULSES_PER_METER;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
