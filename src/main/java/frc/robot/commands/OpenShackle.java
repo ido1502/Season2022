@@ -22,7 +22,7 @@ public class OpenShackle extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    elivator.SetPowerShackleOpenner(Constants.SHACKLE_OPENNING_MAX_POWER);
+    elivator.setPowerShackleOpenner(Constants.SHACKLE_OPENNING_MAX_POWER);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,7 +32,7 @@ public class OpenShackle extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elivator.SetPowerShackleOpenner(0);
+    elivator.setPowerShackleOpenner(0);
   }
 
   // Returns true when the command should end.

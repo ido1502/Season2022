@@ -12,9 +12,9 @@ import frc.robot.utils.PID;
 public class MoveElevatorAutonomously extends CommandBase {
   /** Creates a new MoveElevatorAutonomously. */
 
-  ElivatorInside elivator;
-  double distance, target, current, power;
-  PID powerPid;
+  private final ElivatorInside elivator;
+  private double distance, target, current, power;
+  private final PID powerPid;
   public MoveElevatorAutonomously(ElivatorInside elivator, double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.elivator = elivator;
@@ -38,13 +38,13 @@ public class MoveElevatorAutonomously extends CommandBase {
   @Override
   public void execute() {
     power = powerPid.calculate(elivator.getSelectedSensorPositionInMeters());
-    elivator.SetPowerTelescopicMotor(power);
+    elivator.setPowerTelescopicMotor(power);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elivator.SetPowerTelescopicMotor(0);
+    elivator.setPowerTelescopicMotor(0);
   }
 
   // Returns true when the command should end.

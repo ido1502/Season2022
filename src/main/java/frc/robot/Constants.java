@@ -25,7 +25,7 @@ public final class Constants {
     public static final int XBOX_CONTROLLER_PORT = 0;
     public static final int STEP_1_BUTTON = -1;
     public static final int STEP_2_BUTTON = -1;
-    public static final double JOYSTICK_DEADBAND = -1;
+    public static final double JOYSTICK_DEADBAND = 0.1;
 
     //elivator
     public static final double PULSES_PER_METER = -1;

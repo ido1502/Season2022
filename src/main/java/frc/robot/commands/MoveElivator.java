@@ -30,7 +30,7 @@ public class MoveElivator extends CommandBase {
   public void execute() {
     double power = deadband(-controller.getRightY());
 
-    elivator.SetPowerTelescopicMotor(power);    
+    elivator.setPowerTelescopicMotor(power);
   }
 
   /**
@@ -45,7 +45,7 @@ public class MoveElivator extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elivator.SetPowerTelescopicMotor(0);
+    elivator.setPowerTelescopicMotor(0);
   }
 
   // Returns true when the command should end.

@@ -23,19 +23,21 @@ public class ElivatorInside extends SubsystemBase {
     this.telescopicMotor = new WPI_TalonFX(Constants.TELESCOPIC_MOTOR);
     this.shackleOpenner = new WPI_TalonSRX(Constants.SHACKLE_OPENNER);
     setDefaultCommand(new MoveElivator(this, controller));
+
+    telescopicMotor.setSelectedSensorPosition(0);
   }
 
   /**
    * sets the power of telescopic motor 
    */
-  public void SetPowerTelescopicMotor(double power){ 
+  public void setPowerTelescopicMotor(double power){ 
     this.telescopicMotor.set(ControlMode.PercentOutput, power);
   }
 
   /**
-   * sets the power of shackleOpenner motor 
+   * sets the power of shackleOpenner motor
    */
-  public void SetPowerShackleOpenner(double power){ 
+  public void setPowerShackleOpenner(double power){ 
     this.shackleOpenner.set(ControlMode.PercentOutput, power);
   }
 
