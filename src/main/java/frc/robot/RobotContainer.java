@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  /** AI image generator backed by the OpenAI DALL-E outsourced agent. */
+  private final AIImageGenerator m_aiImageGenerator = new AIImageGenerator();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -38,5 +41,15 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return null;
+  }
+
+  /**
+   * Returns the {@link AIImageGenerator} instance so other robot components can
+   * request AI-generated images from the outsourced DALL-E agent.
+   *
+   * @return the shared AIImageGenerator
+   */
+  public AIImageGenerator getAIImageGenerator() {
+    return m_aiImageGenerator;
   }
 }
